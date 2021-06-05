@@ -1,0 +1,6 @@
+---
+- name: create directory for downloading
+  file: state=directory path={{ data_archives }}
+
+- name: download sources
+  get_url: url={{ url_for_download }} dest={{ data_archives }}/{{ name_file_for_download }}
