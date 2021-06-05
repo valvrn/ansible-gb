@@ -1,0 +1,9 @@
+---
+- name: "New user, new file .json, nginx"
+  hosts: all
+  roles:
+    - role: nginx
+    - role: users
+    - role: touch-file
+  become: yes
+

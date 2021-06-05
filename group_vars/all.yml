@@ -1,0 +1,6 @@
+---
+ansible_user   : bender
+ansible_password : n0passZX
+ansible_sudo_pass : n0passZX
+host_user      : testuser
+host_password  : 12345678

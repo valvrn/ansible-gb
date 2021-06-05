@@ -1,0 +1,23 @@
+---
+- name: Update list packages
+  apt:
+    update_cache: yes
+
+- name: Install nginx for debian
+  apt:
+    name=nginx
+    state=latest 
+
+- name: Replace default config nginx - change port 80 -> 9090
+  template:
+    src=templates/debian/default
+    dest=/etc/nginx/sites-available/default
+
+- name: Reload config nginx
+  service:
+    name=nginx
+    state=reloaded
+    enabled=yes
+
+
+

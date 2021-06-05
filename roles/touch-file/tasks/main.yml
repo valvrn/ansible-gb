@@ -1,0 +1,6 @@
+---
+- name: Creating an empty file
+  copy:
+    dest: "/home/{{ host_user }}/application.json"
+    content: |
+      {}
