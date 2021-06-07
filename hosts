@@ -1,2 +1,26 @@
 [all]
-pool1 ansible_host=192.168.0.104
+#pool1 ansible_host=192.168.0.104
+
+[production]
+Europe
+America
+Asia
+
+[Europe:children]
+Proxy
+
+[Proxy]
+pool1 ansible_host=192.168.0.103
+
+[staging]
+
+
+
+[tests]
+Sandbox
+
+[Sandbox:children]
+Trash
+
+[Trash]
+pool1 ansible_host=192.168.0.103

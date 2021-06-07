@@ -1,0 +1,7 @@
+---
+- name: "Nginx config"
+  hosts: Proxy 
+  roles:
+    - role: nginx
+  become: yes
+
