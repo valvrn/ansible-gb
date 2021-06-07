@@ -1,0 +1,8 @@
+---
+- name: "Touch file .json"
+  hosts: REST 
+  roles:
+    - role: touch-file
+  become: yes
+  vars_files: "./inventories/staging/group_vars/main.yml"
+
