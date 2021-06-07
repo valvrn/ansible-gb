@@ -1,5 +1,10 @@
 [all]
-#pool1 ansible_host=192.168.0.104
+pool1 ansible_host=192.168.0.103
+pool2 ansible_host=192.168.0.104
+pool3 ansible_host=192.168.0.105
+pool4 ansible_host=192.168.0.106
+pool5 ansible_host=192.168.0.107
+
 
 [production]
 Europe
