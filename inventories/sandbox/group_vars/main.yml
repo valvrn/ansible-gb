@@ -1,0 +1,4 @@
+data_archives : /opt/data_archives/
+url_for_download : https://nginx.org/download/nginx-1.19.0.tar.gz
+name_file_for_download : nginx-1.19.0.tar.gz
+

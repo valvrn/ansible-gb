@@ -1,0 +1,7 @@
+---
+- name: "Create user"
+  hosts: Trash 
+  roles:
+    - role: users
+  become: yes
+
