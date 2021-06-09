@@ -4,5 +4,5 @@
   roles:
     - role: users
   become: yes
-  vars_files: "./inventories/sandbox/group_vars/main.yml"
+
 
