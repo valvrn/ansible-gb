@@ -4,5 +4,4 @@
   roles:
     - role: touch-file
   become: yes
-  vars_files: "./inventories/staging/group_vars/main.yml"
 
