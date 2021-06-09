@@ -4,5 +4,4 @@
   roles:
     - role: nginx
   become: yes
-  vars_files: "./inventories/production/group_vars/main.yml"
 
