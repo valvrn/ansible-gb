@@ -4,4 +4,3 @@
   roles:
     - role: download
   become: yes
-  vars_files: "./inventories/sandbox/group_vars/main.yml"
