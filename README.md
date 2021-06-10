@@ -7,3 +7,4 @@
 3. Installation and configuration nginx with template file. Run config_nginx.yml
 4. Creating directory and download file. Run download_file.yml
 5. MySQL: setup, create user, create db, backup db. Run install_mysql.yml
+6. Install Wordpress. Run install_wordpress.yml
