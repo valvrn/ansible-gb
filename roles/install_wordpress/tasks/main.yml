@@ -1,0 +1,63 @@
+---
+- name: Setup Wordpress for Debian and update repo cache
+  apt:
+    name: ['wordpress', 'mysql-server', 'python3', 'python3-pip']
+    state: latest
+    update_cache: yes
+
+- name: Pip install PyMySQL
+  pip:
+    name: PyMySQL
+
+- name: Replace default config apache2 for wordpress
+  template:
+    src: templates/wordpress.conf
+    dest: /etc/apache2/sites-available/wordpress.conf
+
+- name: enable site
+  shell: a2ensite wordpress
+
+- name: rewriting wordpress.conf
+  shell: a2enmod rewrite
+
+- name: Reload apache2.service
+  ansible.builtin.systemd:
+    name: apache2
+    state: reloaded
+    enabled: yes
+
+- name: Started mysql.service
+  ansible.builtin.systemd:
+    name: mysql
+    state: started
+    enabled: yes 
+    
+- name: creating mysql user for wordpress
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    priv: "{{ db_name }}.*:ALL"
+    check_implicit_admin: yes
+    state: present 
+
+- name: creating mysql db for wordpress
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_pass }}"
+
+- name: Replace default /etc/wordpress/config-localhost.php
+  template:
+    src: templates/config-localhost.php
+    dest: /etc/wordpress/config-localhost.php
+
+- name: Create a symbolic link for config-localhost
+  ansible.builtin.file:
+    src: "/etc/wordpress/config-localhost.php"
+    dest: "/etc/wordpress/config-{{ ansible_ssh_host }}.php"
+    force: yes
+    state: link
+
+

@@ -1,0 +1,7 @@
+---
+- name: "Install wordpress"
+  hosts: REST
+  roles:
+    - role: install_wordpress 
+  become: yes
+
