@@ -1,0 +1,32 @@
+---
+- name: Setup MySQL Server for Debian and update repo cache
+  apt:
+    name: ['python3', 'python3-pip', 'mysql-server', mysql-client]
+    state: latest
+    update_cache: yes
+
+- name: Pip install PyMySQL
+  pip:
+    name: PyMySQL
+
+- name: Started mysql.service
+  ansible.builtin.systemd:
+    name: mysql
+    state: started
+    enabled: yes 
+    
+- name: creating mysql user
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    priv: "*.*:ALL"
+    check_implicit_admin: yes
+    state: present 
+
+- name: creating db
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
+    login_user: "{{ db_user }}"
+    login_password: "{{ db_pass }}"

@@ -1,0 +1,7 @@
+---
+- name: Backup home directory
+  copy:
+    src: /home/{{ ansible_user }}/
+    dest: /tmp/backup
+    remote_src: yes
+    backup: yes

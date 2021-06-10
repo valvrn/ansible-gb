@@ -1,5 +1,5 @@
 [all]
-pool1 ansible_host=192.168.0.103
+pool1 ansible_host=192.168.0.102
 pool2 ansible_host=192.168.0.104
 pool3 ansible_host=192.168.0.105
 pool4 ansible_host=192.168.0.106
@@ -15,7 +15,7 @@ Asia
 Proxy
 
 [Proxy]
-pool1 ansible_host=192.168.0.103
+pool1 ansible_host=192.168.0.102
 
 [staging]
 Web
@@ -24,7 +24,7 @@ Web
 REST
 
 [REST]
-pool1 ansible_host=192.168.0.103
+pool1 ansible_host=192.168.0.102
 
 
 [tests]
@@ -34,4 +34,4 @@ Sandbox
 Trash
 
 [Trash]
-pool1 ansible_host=192.168.0.103
+pool1 ansible_host=192.168.0.102

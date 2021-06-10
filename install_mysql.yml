@@ -1,0 +1,9 @@
+---
+- name: "Backup host, install mysql, backup mysql"
+  hosts: Proxy 
+  roles:
+    - role: backup_host
+    - role: setup_mysql
+    - role: backup_mysql  
+  become: yes
+

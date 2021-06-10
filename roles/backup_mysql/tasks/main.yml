@@ -1,0 +1,8 @@
+---
+- name: Backup MySQL
+  mysql_db:
+    state: dump
+    name: all
+    target: /tmp/{{ inventory_hostname }}.sql
+    login_user: "{{ db_user }}"
+    login_password: "{{db_pass }}"
