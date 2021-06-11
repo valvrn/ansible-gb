@@ -1,0 +1,6 @@
+---
+- name: Setup PFM and update repo cache
+  apt:
+    name: ['pfm']
+    state: latest
+    update_cache: yes

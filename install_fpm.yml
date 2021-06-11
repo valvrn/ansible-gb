@@ -1,0 +1,7 @@
+---
+- name: "Install FPM"
+  hosts: REST
+  roles:
+    - role: install_fpm 
+  become: yes
+
