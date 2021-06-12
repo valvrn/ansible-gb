@@ -13,8 +13,8 @@
 ### Changes in the project
 #### 12.06.2021
 Added role for installation PHP-FPM (ver7.2)
-if you can see the page at "http://<your server IP>/info.php" so it works!
+if you can see the page at "http://your server IP/info.php" so it works!
 
 #### 10.06.2021
 Added role for installation Wordpress (latest)
-if you can see the page configuration at "http://<your server IP>" so it works!
+if you can see the page configuration at "http://your server IP" so it works!
