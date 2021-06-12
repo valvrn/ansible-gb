@@ -1,6 +1,38 @@
 ---
-- name: Setup PFM and update repo cache
+- name: Update list packages
   apt:
-    name: ['pfm']
-    state: latest
     update_cache: yes
+
+- name: Install software-properties-common for debian
+  apt:
+    name: software-properties-common
+    state: latest
+
+- name: Add PHP repository from PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:ondrej/php
+
+- name: Install nginx and php for debian
+  apt:
+    name: ['nginx', 'php7.2', 'php7.2-fpm', 'php7.2-mbstring', 'php7.2-mysql', 'php7.2-curl']
+    state: latest
+
+- name: Reload config nginx
+  service:
+    name: php7.2-fpm
+    state: restarted
+    enabled: yes
+
+- name: Replace default config nginx with changed for php7.2-fpm
+  template:
+    src: templates/default
+    dest: /etc/nginx/sites-available/default
+
+- name: Reload config nginx
+  service:
+    name: nginx
+    state: reloaded
+    enabled: yes
+
+- name: Create info.php for test
+  shell: echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
