@@ -2,6 +2,6 @@
 - name: "Nginx config"
   hosts: Proxy 
   roles:
-    - role: nginx
+    - role: install_nginx
   become: yes
 

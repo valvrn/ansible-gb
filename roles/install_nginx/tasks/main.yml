@@ -1,0 +1,50 @@
+---
+- name: Create directory for backups
+  file:
+#    path: /home/{{ ansible_user }}/backups/nginx/{{ ansible_facts['ansible_date_time']['date'] }}/www/
+    path: /home/{{ ansible_user }}/backups/nginx/{{ ansible_date_time.date }}/www/
+    state: directory
+
+- name: Backup www directory
+  copy:
+    src: /var/www/
+    dest: "/home/{{ ansible_user }}/backups/nginx/{{ ansible_date_time.date }}/www"
+    remote_src: yes
+    backup: yes
+
+- name: Update list packages
+  apt:
+    update_cache: yes
+
+- name: Install nginx for debian
+  apt:
+    name: nginx
+    state: latest
+
+- name: Backup default conf.d nginx
+  copy:
+    src: /etc/nginx/conf.d/
+    dest: "/home/{{ ansible_user }}/backups/nginx/{{ ansible_date_time.date }}/"
+    remote_src: yes
+    backup: yes
+
+- name: Backup default nginx.conf nginx
+  copy:
+    src: /etc/nginx/nginx.conf
+    dest: "/home/{{ ansible_user }}/backups/nginx/{{ ansible_date_time.date }}/"
+    remote_src: yes
+    backup: yes
+
+- name: Replace default config nginx - change port 80 -> 9090
+  template:
+    src: templates/debian/default
+    dest: /etc/nginx/sites-available/default
+
+- name: Reload config nginx
+  service:
+    name: nginx
+    state: reloaded
+    enabled: yes
+
+
+
