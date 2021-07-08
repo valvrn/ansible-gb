@@ -6,6 +6,20 @@ pool4 ansible_host=192.168.0.106
 pool5 ansible_host=192.168.0.107
 
 
+[linux]
+linux_wa
+linux_myr
+
+[linux_wa:children]
+pool1
+
+[linux_myr:children]
+pool2
+
+[macos]
+
+
+
 [production]
 Europe
 America
